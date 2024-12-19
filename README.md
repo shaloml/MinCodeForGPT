@@ -109,8 +109,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Ensure source directory exists and is accessible
 - Check write permissions for output directory
 - For large projects, ensure adequate system memory
-
-## 📞 Support
-
-- Create an issue in the GitHub repository
-- Contact the maintainer: [Your Contact Info]
