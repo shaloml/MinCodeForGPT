@@ -1,6 +1,6 @@
 # File Minifier
 
-A powerful .NET console application for minifying and consolidating multiple source code files into a single text file. Designed specifically for preparing code for AI model interactions (like ChatGPT/Claude) by removing comments and unnecessary whitespace while preserving code functionality.
+A powerful cross-platform console application for minifying and consolidating multiple source code files into a single text file. Designed specifically for preparing code for AI model interactions (like ChatGPT/Claude) by removing comments and unnecessary whitespace while preserving code functionality.
 
 ## 🌟 Features
 
@@ -9,36 +9,55 @@ A powerful .NET console application for minifying and consolidating multiple sou
   - C# + JSON (including .csproj, web.config, and appsettings)
   - Full web project (C#, JSON, HTML, and related files)
 - Smart default output path generation with GUID for uniqueness
-- Detailed processing logs
-- File type statistics
+- Detailed processing logs and statistics
+- Cross-platform support (Windows, Linux, macOS)
+- Self-contained single executable
+- File type statistics and summaries
 - Preserves file structure with clear file separation
-- Handles multiple file types appropriately:
-  - Removes C# comments (single-line, multi-line, and XML documentation)
-  - Minifies JSON and config files
-  - Strips HTML comments while preserving structure
-  - Maintains code readability
 
 ## 📋 Requirements
 
-- .NET 6.0 or higher
-- Windows/Linux/macOS compatible
+For Building:
+- .NET 8.0 SDK
+- PowerShell (Windows) or Bash (Linux/macOS) for build scripts
+
+For Running:
+- No requirements - executables are self-contained
 
 ## 🚀 Quick Start
+
+### Building from Source
 
 1. Clone the repository:
 ```bash
 git clone https://github.com/yourusername/file-minifier.git
-```
-
-2. Build the project:
-```bash
 cd file-minifier
-dotnet build
 ```
 
-3. Run the application:
+2. Build for all platforms:
+
+Windows:
+```powershell
+.\build.ps1
+```
+
+Linux/macOS:
 ```bash
-dotnet run
+chmod +x build.sh
+./build.sh
+```
+
+### Running the Application
+
+Windows:
+```bash
+.\FileMinifier.exe
+```
+
+Linux/macOS:
+```bash
+chmod +x FileMinifier
+./FileMinifier
 ```
 
 ## 💻 Usage
@@ -46,7 +65,7 @@ dotnet run
 1. Launch the application
 2. Select processing mode (1-3 or Enter for default):
    - Option 1 (Default): C# files only
-   - Option 2: C# + JSON files
+   - Option 2: C# + JSON files (including web.config)
    - Option 3: All web project files
 3. Enter source directory path
 4. Optionally specify output file path (or press Enter for default)
@@ -72,18 +91,27 @@ c:\temp\gptmin\[SourceFolderName]_[Guid].txt
 ### Mode 3
 - All from Mode 2
 - `.cshtml` - Razor views
-- `.html` - HTML files
-- `.htm` - HTML files
+- `.html/.htm` - HTML files
+
+## 🔧 Build Artifacts
+
+After building, you'll find the executables in the `publish` directory:
+
+```
+publish/
+├── win-x64/
+│   └── FileMinifier.exe    # Windows executable
+├── linux-x64/
+│   └── FileMinifier        # Linux executable
+├── osx-x64/
+│   └── FileMinifier        # macOS Intel executable
+└── osx-arm64/
+    └── FileMinifier        # macOS Apple Silicon executable
+```
 
 ## 📊 Output Format
 
 The output file contains:
-- Clear file separators
-- Full file paths as comments
-- Minified content
-- Processing statistics
-
-Example output:
 ```
 // File: C:\Projects\MyProject\Program.cs
 namespace MyProject{class Program{static void Main(string[]args){...}}}
@@ -96,16 +124,35 @@ namespace MyProject{class Program{static void Main(string[]args){...}}}
 ---
 ```
 
+## 🔍 Troubleshooting
+
+Common issues and solutions:
+
+### Windows
+- If you get "Access Denied" errors, try running as administrator
+- Ensure antivirus is not blocking the executable
+
+### Linux/macOS
+- If you can't execute the file, set permissions:
+  ```bash
+  chmod +x FileMinifier
+  ```
+- For macOS security warning, go to System Preferences > Security & Privacy
+
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🔍 Troubleshooting
 
-- Ensure source directory exists and is accessible
-- Check write permissions for output directory
-- For large projects, ensure adequate system memory
+## 🙏 Acknowledgments
+
+- Thanks to all contributors
+- Inspired by the need for efficient code sharing with AI models
